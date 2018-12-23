@@ -1,0 +1,23 @@
+{
+  "name": "gatsby-deployment",
+  "version": "1.0.0",
+  "description": "deploys gatsby to githhub pages",
+  "main": "gatsby_compiler.js",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashleybeshir/aws-cloud-serverless.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashleybeshir/aws-cloud-serverless/issues"
+  },
+  "homepage": "https://github.com/ashleybeshir/aws-cloud-serverless#readme"
+}
