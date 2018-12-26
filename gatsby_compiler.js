@@ -13,7 +13,7 @@ ls.stdout.on('data', (data) => {
 
 ls.stderr.on('data', (data) => {
     axios.post(process.argv[3], {
-            error: 'data',
+            error: data,
         })
         .then(function (response) {
             console.log(response);
