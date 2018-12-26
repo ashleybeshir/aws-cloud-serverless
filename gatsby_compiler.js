@@ -12,8 +12,9 @@ ls.stdout.on('data', (data) => {
 });
 
 ls.stderr.on('data', (data) => {
+    
     axios.post(process.argv[3], {
-            error: data,
+            error: data.toString('utf8'),
         })
         .then(function (response) {
             console.log(response);
@@ -21,7 +22,7 @@ ls.stderr.on('data', (data) => {
         .catch(function (error) {
             console.log(error);
     });
-  console.log(`stderr: ${data}`);
+  console.log(`stderr: ${data.toString('utf8')}`);
 });
 
 ls.on('close', (code) => {
