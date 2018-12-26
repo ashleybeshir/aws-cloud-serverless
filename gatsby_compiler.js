@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 const axios = require('axios');
 
-if(process.argv[2] === undefined || process.argv[3])
+if(process.argv[2] === undefined || process.argv[3] === undefined)
 {
     throw Error ('Argument missing');
 }
