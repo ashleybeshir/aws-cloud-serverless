@@ -7,25 +7,36 @@ if(process.argv[2] === undefined || process.argv[3] === undefined)
 }
 const ls = spawn('sh', ['./gatsby_script.sh', process.argv[2]]);
 
+//for some reason gatsby build process is outputing some normal stuff to stderr. So need to check if their is a actual error
+//even though this process isnt accurate
+var errorCheckList = ["error","fatal","exception"];
+
 ls.stdout.on('data', (data) => {
-  console.log(`stdout: ${data}`);
+  //console.log(`stdout: ${data}`);
 });
 
 ls.stderr.on('data', (data) => {
-    
-    axios.post(process.argv[3], {
-            error: data.toString('utf8'),
-        })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
+    let formattedData = data.toString('utf8');
+    errorCheckList.forEach((e)=>{
+        let sendError = true;
+        if(formattedData.includes(e) && sendError === true)
+        {
+            axios.post(process.argv[3], {
+                error: "Their is a error with gatsby build",
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            sendError = false;
+        }
     });
-  console.log(`stderr: ${data.toString('utf8')}`);
+  //console.log(`stderr: ${data.toString('utf8')}`);
 });
 
 ls.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
+  //console.log(`child process exited with code ${code}`);
 });
 
