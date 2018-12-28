@@ -22,7 +22,7 @@ ls.stderr.on('data', (data) => {
         if(formattedData.includes(e) && sendError === true)
         {
             axios.post(process.argv[3], {
-                error: "Their is a error with gatsby build",
+                error: "Gatsby build error: "+formattedData,
             })
             .then(function (response) {
                 console.log(response);
